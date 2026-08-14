@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Hub</title>
+
+    <style>
+        :root {
+            --bg-main: #f8f9fa;
+            --bg-panel: #ffffff;
+            --bg-hover: #f1f5f9;
+            --border-color: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+
+            /* Warm amber gold accent */
+            --accent: #d97706;
+            --accent-glow: rgba(217, 119, 6, 0.1);
+
+            --font-stack: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --transition-speed: 0.25s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           WRAPPER & CORE LAYOUT
+        ========================= */
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            height: 100vh;
+        }
+
+        .layout-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* =========================
+           HEADER NAVBAR
+        ========================= */
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.25rem;
+            height: 60px;
+            background-color: var(--bg-panel);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 50;
+            flex-shrink: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .nav-left,
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .nav-logo-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 0.4rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn:hover {
+            background-color: var(--bg-hover);
+        }
+
+        .mobile-only {
+            display: none;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all var(--transition-speed);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .hiden-element {
+            display: none !important;
+        }
+
+        /* =========================
+           SIDEBAR NAVIGATION
+        ========================= */
+
+        .sidebar {
+            width: 260px;
+            background-color: var(--bg-panel);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .menu-section {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .menu-section h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            padding-left: 0.2rem;
+        }
+
+        .menu-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.6rem 0.6rem;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background var(--transition-speed);
+            margin-bottom: 0.2rem;
+        }
+
+        .menu-btn:hover {
+            background-color: var(--bg-hover);
+        }
+
+        .menu-btn.active {
+            background-color: var(--accent-glow);
+            color: var(--accent);
+            font-weight: 600;
+            border-left: 3px solid var(--accent);
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            min-width: 0;
+        }
+
+        .content-frame {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           LANDING SHOWCASE
+        ========================= */
+
+        .page-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .main-page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .main-page-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .image-showcase {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            background-color: #f1f5f9;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .body-section-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--accent);
+        }
+
+        .body-text {
+            margin-bottom: 1rem;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        /* =========================
+           NOTICE BOX
+        ========================= */
+
+        .notice-box {
+            background-color: #fffbebfb;
+            border: 1px solid #fde68a;
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+        }
+
+        .notice-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+        }
+
+        .notice-body {
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+
+        /* =========================
+           ACTION CARDS
+        ========================= */
+
+        .action-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .navigation-card {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .navigation-card:hover {
+            border-color: var(--accent);
+            background-color: var(--bg-hover);
+        }
+
+        .toggle-card {
+            border-color: var(--accent);
+            background-color: var(--accent-glow);
+        }
+
+        .card-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-action-text {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 0.2rem;
+        }
+
+        .card-desc-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .toggle-details .card-action-text {
+            color: var(--accent);
+        }
+
+        /* =========================
+           SNIPPETS
+        ========================= */
+
+        .feature-main-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .snippet-box {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .snippet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-hover);
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .snippet-subtitle {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .copy-btn {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all var(--transition-speed);
+        }
+
+        .copy-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        pre {
+            padding: 1rem;
+            overflow-x: auto;
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.45;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            .mobile-only {
+                display: flex;
+            }
+
+            .sidebar {
+                position: absolute;
+                left: -100%;
+                top: 0;
+                bottom: 0;
+                z-index: 1000;
+                width: 80%;
+                max-width: 280px;
+                box-shadow: 5px 0 20px rgba(0,0,0,0.15);
+            }
+
+            .sidebar.active-mobile {
+                left: 0;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .action-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <header class="top-nav">
+
+            <div class="nav-left">
+
+                <button
+                    id="menu-btn"
+                    class="icon-btn mobile-only"
+                    title="Toggle Menu"
+                >
+                    <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+
+                <svg
+                    class="nav-logo-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                </svg>
+
+                <h1
+                    class="nav-title"
+                    id="main-nav-title"
+                >
+                    Wand UI Docs
+                </h1>
+
+            </div>
+
+            <div class="nav-right">
+
+                <div
+                    class="nav-pagination hiden-element"
+                    id="nav-pagination"
+                >
+                    <button
+                        id="back-btn"
+                        class="nav-btn"
+                    >
+                        Back
+                    </button>
+
+                    <button
+                        id="next-btn"
+                        class="nav-btn"
+                    >
+                        Next
+                    </button>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <div class="layout-container">
+
+            <!-- =========================
+                 SIDEBAR
+            ========================= -->
+
+            <aside
+                id="sidebar"
+                class="sidebar"
+            >
+                <div id="menu-content">
+                    <!-- Dynamic menu -->
+                </div>
+            </aside>
+
+
+            <!-- =========================
+                 MAIN CONTENT
+            ========================= -->
+
+            <main class="main-content">
+
+                <!-- LANDING SCREEN -->
+
+                <div
+                    id="landing-view"
+                    class="content-frame animate-fade"
+                >
+
+                    <div class="page-header">
+
+                        <h2
+                            class="main-page-title"
+                            id="intro-title"
+                        >
+                            About Wand UI
+                        </h2>
+
+                        <p
+                            class="main-page-subtitle"
+                            id="intro-subtitle"
+                        >
+                            Documentation Hub
+                        </p>
+
+                    </div>
+
+
+                    <!-- =========================
+                         PREVIEW IMAGE
+                         =========================
+                         
+                         BTUI image:
+                         btui_preview.png
+                    -->
+
+                    <div class="image-showcase">
+
+                        <img
+                            src="wandui_preview.png"
+                            alt="UI Preview"
+                            class="preview-img"
+                            id="thumbnail-image"
+                            onerror="this.style.display='none'"
+                        >
+
+                    </div>
+
+
+                    <h3
+                        class="body-section-title"
+                        id="desc-title"
+                    >
+                        About Wand UI
+                    </h3>
+
+
+                    <p
+                        class="body-text"
+                        id="desc-text-1"
+                    >
+                        <strong>Wand UI</strong> is a Redz Library V5 remake,
+                        modified and expanded by
+                        <strong>Pirath_4 & STEVEKHMER</strong>.
+                    </p>
+
+
+                    <!-- NOTICE -->
+
+                    <div class="notice-box">
+
+                        <div class="notice-header">
+
+                            <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+
+                            <span>
+                                VERSION INFO
+                            </span>
+
+                        </div>
+
+
+                        <p class="notice-body">
+                            Select elements from the sidebar or click
+                            "Loadstring" below to get started.
+                        </p>
+
+                    </div>
+
+
+                    <!-- ACTION CARDS -->
+
+                    <div class="action-cards">
+
+                        <div
+                            id="lib-toggle-btn"
+                            class="navigation-card toggle-card"
+                        >
+
+                            <div class="card-details toggle-details">
+
+                                <span
+                                    class="card-action-text"
+                                    id="toggle-card-title"
+                                >
+                                    Switch to BTUI Library V2.0 &gt;
+                                </span>
+
+                                <span
+                                    class="card-desc-text"
+                                    id="toggle-card-desc"
+                                >
+                                    Currently viewing Wand UI
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="continue-card-btn"
+                            class="navigation-card"
+                        >
+
+                            <div class="card-details">
+
+                                <span class="card-action-text">
+                                    Loadstring &gt;
+                                </span>
+
+                                <span class="card-desc-text">
+                                    Start scripting now
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     CODE SNIPPETS WORKSPACE
+                ========================= -->
+
+                <div
+                    id="content-container"
+                    class="content-frame hidden animate-fade"
+                >
+
+                    <h2
+                        id="current-feature-title"
+                        class="feature-main-title"
+                    >
+                        Feature Title
+                    </h2>
+
+                    <div id="snippets-container"></div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* ==========================================
+               DATA 1: WAND UI
+            ========================================== */
+
+            const wandUIFeatures = [
+
+                {
+                    section: "Setup",
+
+                    items: [
+
+                        {
+                            name: "Loadstring",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Load Library",
+
+                                    code: `local Library = loadstring(game:HttpGet("https://github.com/sokpanha10000-oss/SKUI/releases/latest/download/main.lua"))()`
+                                }
+
+                            ]
+                        }
+
+                    ]
+                },
+
+
+                {
+                    section: "UI Framework",
+
+                    items: [
+
+                        {
+                            name: "Window",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Main Window",
+
+                                    code: `local Window = Library:MakeWindow({
+    Name = "Nice Hub : Cool Game",
+    Author = "dev by real_redz",
+    ScriptFolder = "redz-library-V5-remake-mod",
+    SearchBar = true,
+    UserInfoTop = true,
+    UserInfoTitle = game:GetService("Players").LocalPlayer.DisplayName,
+    UserInfoSubtitle = "Advanced User",
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Minimizer",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "PC Keybind",
+
+                                    code: `local Minimizer = Window:NewMinimizer({
+    KeyCode = Enum.KeyCode.LeftControl
+})`
+                                },
+
+
+                                {
+                                    subtitle: "Mobile Button",
+
+                                    code: `local MobileButton = Minimizer:CreateMobileMinimizer({
+    Image = "rbxassetid://0",
+    BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Tab",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Create Tab",
+
+                                    code: `local Tab = Window:MakeTab({ "Cool Tab", "Home" })`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Notification",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Notify User",
+
+                                    code: `Window:Notify({
+    Title = "Notification",
+    Content = "this is a Notification",
+    Image = "rbxassetid://10734953451",
+    Duration = 5
+})`
+                                }
+
+                            ]
+                        }
+
+                    ]
+                },
+
+
+                {
+                    section: "Elements",
+
+                    items: [
+
+                        {
+                            name: "Button",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Standard Button",
+
+                                    code: `Tab:AddButton({
+    Name = "My Button",
+    Debounce = 0.5,
+    Callback = function()
+        -- logic here
+    end
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Toggle",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Checkbox Switch",
+
+                                    code: `Tab:AddToggle({
+    Name = "Toggle",
+    Type = "Toggle",
+    Default = false,
+    Callback = function(Value)
+        -- logic here
+    end
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Slider",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Number Slider",
+
+                                    code: `Tab:AddSlider({
+    Name = "Cool Title",
+    Min = -5,
+    Max = 5,
+    Increment = 0.25,
+    Default = 0,
+    Callback = function(Value)
+        -- logic here
+    end
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Dropdown",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Dropdown Selection",
+
+                                    code: `Tab:AddDropdown({
+    Name = "Dropdown",
+    Options = {"one", "two", "three"},
+    Default = "one",
+    Callback = function(Value)
+        -- logic here
+    end
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Textbox",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Text Input Box",
+
+                                    code: `Tab:AddTextBox({
+    Name = "My TextBox",
+    Default = "text",
+    Placeholder = "input text...",
+    ClearOnFocus = true,
+    Callback = function(Value)
+        -- logic here
+    end
+})`
+                                }
+
+                            ]
+                        }
+
+                    ]
+                }
+
+            ];
+
+
+            /* ==========================================
+               DATA 2: BTUI LIBRARY V2.0
+            ========================================== */
+
+            const btuiFeatures = [
+
+                {
+                    section: "Getting Started",
+
+                    items: [
+
+                        {
+                            name: "Loadstring",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Load BTUI Library V2.0",
+
+                                    code: `local BTUI = loadstring(game:HttpGet("https://github.com/sokpanha10000-oss/P4Lib/releases/latest/download/BTUI.lua"))()`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Theme",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Theme Configuration",
+
+                                    code: `local Theme = BTUI:ChangeTheme({
+    Color = "Yellow",
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Key System",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Security Key System",
+
+                                    code: `local KeySystem = BTUI:CreateKeySystem({
+    LoaderTitle = "BT Hub",
+    Title = "Access Required",
+    Note = "Get your key at discord.gg/example",
+
+    KeyValidator = function(key)
+        local validKeys = {"key1", "hey you chill", "key3"}
+        return table.find(validKeys, key) ~= nil
+    end,
+
+    SaveKey = true,
+    URL = "https://discord.gg/example",
+
+    Thumbnail = {
+        Image = "rbxassetid://1234567890",
+        Title = "Premium Member",
+    }
+})`
+                                }
+
+                            ]
+                        }
+
+                    ]
+                },
+
+
+                {
+                    section: "Core Interface",
+
+                    items: [
+
+                        {
+                            name: "Window",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Create Main Window",
+
+                                    code: `local Window = BTUI:CreateWindow({
+    Title = "My Super Hub",
+    Image = "ID", -- logo image --
+    Subtitle = "by .ftgs and .ftgs", -- optional
+    SearchBar = true
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Minimize Button",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Screen Minimizer",
+
+                                    code: `local MinimizeBtn = Window:CreateMinimizeBtn({
+    Image = "ID",
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Tab",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Create Category Tab",
+
+                                    code: `local Tab = Window:CreateTab({
+    Title = "Tab",
+    Icon = "house",
+})`
+                                }
+
+                            ]
+                        }
+
+                    ]
+                },
+
+
+                {
+                    section: "Containers",
+
+                    items: [
+
+                        {
+                            name: "Group Box",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Group Box Container",
+
+                                    code: `local Group1 = Tab:CreateGroupBox({
+    Title = "Fruits",
+    BackgroundColor = "Darker",
+})`
+                                }
+
+                            ]
+                        }
+
+                    ]
+                },
+
+
+                {
+                    section: "Interactive Elements",
+
+                    items: [
+
+                        {
+                            name: "Button",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Clickable Button",
+
+                                    code: `Group1:CreateButton({
+    Title = "Button",
+    Locked = false,
+    Callback = function()
+        -- ...
+    end
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Dropdown",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Dropdown Menu",
+
+                                    code: `Group1:CreateDropdown({
+    Title = "Dropdown",
+    Values = { "A", "B", "C" },
+    Value = "A",
+    Callback = function(option)
+        print("Category selected: " .. option)
+    end
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Toggle",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Toggle Switch",
+
+                                    code: `Group1:CreateToggle({
+    Title = "Toggle",
+    Desc = "Toggle Description",
+    Value = false,
+    Callback = function(state)
+        print("Toggle Activated " .. tostring(state))
+    end
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Slider",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Number / Float Slider",
+
+                                    code: `Group1:CreateSlider({
+    Title = "Slider",
+    -- To make float number supported, make Step a float (e.g. Step = 0.1)
+    Step = 1,
+    Value = {
+        Min = 20,
+        Max = 120,
+        Default = 70,
+    },
+    Callback = function(value)
+        print(value)
+    end
+})`
+                                }
+
+                            ]
+                        },
+
+
+                        {
+                            name: "Input Box",
+
+                            snippets: [
+
+                                {
+                                    subtitle: "Text Input Entry",
+
+                                    code: `Group1:CreateInput({
+    Title = "Input",
+    Value = "Default value",
+    Placeholder = "Enter text...",
+    Callback = function(input)
+        print("text entered: " .. input)
+    end
+})`
+                                }
+
+                            ]
+                        }
+
+                    ]
+                }
+
+            ];
+
+
+            /* ==========================================
+               STATE MANAGEMENT
+            ========================================== */
+
+            let activeLibrary = 'WandUI';
+
+            let currentFeatures = wandUIFeatures;
+
+            let flatList = [];
+
+            let currentIndex = -1;
+
+
+            /* ==========================================
+               DOM SELECTORS
+            ========================================== */
+
+            const menuBtn =
+                document.getElementById('menu-btn');
+
+            const sidebar =
+                document.getElementById('sidebar');
+
+            const backBtn =
+                document.getElementById('back-btn');
+
+            const nextBtn =
+                document.getElementById('next-btn');
+
+            const menuContent =
+                document.getElementById('menu-content');
+
+            const paginationContainer =
+                document.getElementById('nav-pagination');
+
+            const landingView =
+                document.getElementById('landing-view');
+
+            const continueCardBtn =
+                document.getElementById('continue-card-btn');
+
+            const contentContainer =
+                document.getElementById('content-container');
+
+            const featureTitle =
+                document.getElementById('current-feature-title');
+
+            const snippetsContainer =
+                document.getElementById('snippets-container');
+
+            const navTitle =
+                document.getElementById('main-nav-title');
+
+            const introTitle =
+                document.getElementById('intro-title');
+
+            const descTitle =
+                document.getElementById('desc-title');
+
+            const descText1 =
+                document.getElementById('desc-text-1');
+
+            const libToggleBtn =
+                document.getElementById('lib-toggle-btn');
+
+            const toggleCardTitle =
+                document.getElementById('toggle-card-title');
+
+            const toggleCardDesc =
+                document.getElementById('toggle-card-desc');
+
+            const thumbnailImage =
+                document.getElementById('thumbnail-image');
+
+
+            /* ==========================================
+               BUILD FLAT LIST
+            ========================================== */
+
+            function buildFlatList() {
+
+                flatList = [];
+
+                currentFeatures.forEach((sec) => {
+
+                    sec.items.forEach((item) => {
+
+                        flatList.push({
+                            sectionName: sec.section,
+                            ...item
+                        });
+
+                    });
+
+                });
+
+            }
+
+
+            /* ==========================================
+               UPDATE PAGE TEXT
+            ========================================== */
+
+            function updatePageText() {
+
+                if (activeLibrary === 'WandUI') {
+
+                    navTitle.textContent =
+                        "Wand UI Docs";
+
+                    introTitle.textContent =
+                        "About Wand UI";
+
+                    descTitle.textContent =
+                        "About Wand UI";
+
+                    descText1.innerHTML =
+                        `<strong>Wand UI</strong> is a Redz Library V5 remake, modified and expanded by <strong>Pirath_4 & STEVEKHMER</strong>.`;
+
+                    toggleCardTitle.innerHTML =
+                        "Switch to BTUI Library V2.0 &gt;";
+
+                    toggleCardDesc.textContent =
+                        "Currently viewing Wand UI";
+
+                    thumbnailImage.style.display =
+                        'block';
+
+                    thumbnailImage.src =
+                        "wandui_preview.png";
+
+                } else {
+
+                    navTitle.textContent =
+                        "BTUI V2.0 Docs";
+
+                    introTitle.textContent =
+                        "About BTUI Library V2.0";
+
+                    descTitle.textContent =
+                        "About BTUI Framework";
+
+                    descText1.innerHTML =
+                        `<strong>BTUI Library V2.0</strong> is a modernized UI framework engineered for building clean, organized interfaces directly in Roblox scripts.`;
+
+                    toggleCardTitle.innerHTML =
+                        "Switch to Wand UI &gt;";
+
+                    toggleCardDesc.textContent =
+                        "Currently viewing BTUI V2.0";
+
+                    thumbnailImage.style.display =
+                        'block';
+
+                    /* Uploaded UI Library image */
+                    thumbnailImage.src =
+                        "btui_preview.png";
+
+                }
+
+            }
+
+
+            /* ==========================================
+               LIBRARY SWITCH
+            ========================================== */
+
+            libToggleBtn.addEventListener('click', () => {
+
+                if (activeLibrary === 'WandUI') {
+
+                    activeLibrary = 'BTUI';
+
+                    currentFeatures = btuiFeatures;
+
+                } else {
+
+                    activeLibrary = 'WandUI';
+
+                    currentFeatures = wandUIFeatures;
+
+                }
+
+                updatePageText();
+
+                buildFlatList();
+
+                renderMenu();
+
+                showLandingMenu();
+
+            });
+
+
+            /* ==========================================
+               CONTINUE
+            ========================================== */
+
+            continueCardBtn.addEventListener('click', () => {
+
+                selectFeature(0);
+
+            });
+
+
+            /* ==========================================
+               RENDER SIDEBAR
+            ========================================== */
+
+            function renderMenu() {
+
+                menuContent.innerHTML = '';
+
+
+                const baseDiv =
+                    document.createElement('div');
+
+                baseDiv.className =
+                    'menu-section';
+
+                baseDiv.innerHTML =
+                    `<h3>Introducing</h3>`;
+
+
+                const homeBtn =
+                    document.createElement('button');
+
+                homeBtn.className =
+                    'menu-btn active';
+
+                homeBtn.textContent =
+                    `About ${
+                        activeLibrary === 'WandUI'
+                            ? 'Wand UI'
+                            : 'BTUI V2.0'
+                    }`;
+
+
+                homeBtn.onclick = () =>
+                    showLandingMenu();
+
+
+                baseDiv.appendChild(homeBtn);
+
+                menuContent.appendChild(baseDiv);
+
+
+                currentFeatures.forEach((sec, sIdx) => {
+
+                    const secDiv =
+                        document.createElement('div');
+
+                    secDiv.className =
+                        'menu-section';
+
+                    secDiv.innerHTML =
+                        `<h3>${sec.section}</h3>`;
+
+
+                    sec.items.forEach((item, iIdx) => {
+
+                        const btn =
+                            document.createElement('button');
+
+                        btn.className =
+                            'menu-btn';
+
+                        btn.textContent =
+                            item.name;
+
+
+                        let globalIndex = 0;
+
+
+                        for (
+                            let i = 0;
+                            i < sIdx;
+                            i++
+                        ) {
+
+                            globalIndex +=
+                                currentFeatures[i]
+                                    .items.length;
+
+                        }
+
+
+                        globalIndex += iIdx;
+
+
+                        btn.dataset.index =
+                            globalIndex;
+
+
+                        btn.addEventListener(
+                            'click',
+                            () => {
+
+                                selectFeature(
+                                    globalIndex
+                                );
+
+                                sidebar.classList.remove(
+                                    'active-mobile'
+                                );
+
+                            }
+                        );
+
+
+                        secDiv.appendChild(btn);
+
+                    });
+
+
+                    menuContent.appendChild(secDiv);
+
+                });
+
+            }
+
+
+            /* ==========================================
+               LANDING PAGE
+            ========================================== */
+
+            function showLandingMenu() {
+
+                currentIndex = -1;
+
+                contentContainer.classList.add(
+                    'hidden'
+                );
+
+                paginationContainer.classList.add(
+                    'hiden-element'
+                );
+
+                landingView.classList.remove(
+                    'hidden'
+                );
+
+
+                document
+                    .querySelectorAll('.menu-btn')
+                    .forEach((btn, idx) => {
+
+                        btn.classList.toggle(
+                            'active',
+                            idx === 0
+                        );
+
+                    });
+
+            }
+
+
+            /* ==========================================
+               SELECT FEATURE
+            ========================================== */
+
+            function selectFeature(index) {
+
+                currentIndex = index;
+
+                const data =
+                    flatList[index];
+
+
+                if (!data) {
+                    return;
+                }
+
+
+                landingView.classList.add(
+                    'hidden'
+                );
+
+                contentContainer.classList.remove(
+                    'hidden'
+                );
+
+                paginationContainer.classList.remove(
+                    'hiden-element'
+                );
+
+
+                featureTitle.textContent =
+                    data.name;
+
+
+                snippetsContainer.innerHTML =
+                    '';
+
+
+                data.snippets.forEach((snippet) => {
+
+                    const box =
+                        document.createElement('div');
+
+                    box.className =
+                        'snippet-box animate-fade';
+
+
+                    const header =
+                        document.createElement('div');
+
+                    header.className =
+                        'snippet-header';
+
+
+                    const subtitle =
+                        document.createElement('span');
+
+                    subtitle.className =
+                        'snippet-subtitle';
+
+                    subtitle.textContent =
+                        snippet.subtitle;
+
+
+                    const copyBtn =
+                        document.createElement('button');
+
+                    copyBtn.className =
+                        'copy-btn';
+
+                    copyBtn.textContent =
+                        'Copy';
+
+
+                    copyBtn.onclick = () => {
+
+                        if (
+                            navigator.clipboard &&
+                            navigator.clipboard.writeText
+                        ) {
+
+                            navigator.clipboard
+                                .writeText(snippet.code)
+                                .then(() => {
+
+                                    copyBtn.textContent =
+                                        'Copied!';
+
+                                    setTimeout(() => {
+
+                                        copyBtn.textContent =
+                                            'Copy';
+
+                                    }, 1500);
+
+                                });
+
+                        } else {
+
+                            const textArea =
+                                document.createElement(
+                                    'textarea'
+                                );
+
+                            textArea.value =
+                                snippet.code;
+
+                            document.body.appendChild(
+                                textArea
+                            );
+
+                            textArea.select();
+
+                            document.execCommand(
+                                'copy'
+                            );
+
+                            document.body.removeChild(
+                                textArea
+                            );
+
+                            copyBtn.textContent =
+                                'Copied!';
+
+                            setTimeout(() => {
+
+                                copyBtn.textContent =
+                                    'Copy';
+
+                            }, 1500);
+
+                        }
+
+                    };
+
+
+                    header.appendChild(
+                        subtitle
+                    );
+
+                    header.appendChild(
+                        copyBtn
+                    );
+
+
+                    const pre =
+                        document.createElement('pre');
+
+
+                    const codeEl =
+                        document.createElement('code');
+
+
+                    codeEl.textContent =
+                        snippet.code;
+
+
+                    pre.appendChild(
+                        codeEl
+                    );
+
+
+                    box.appendChild(
+                        header
+                    );
+
+                    box.appendChild(
+                        pre
+                    );
+
+
+                    snippetsContainer.appendChild(
+                        box
+                    );
+
+                });
+
+
+                document
+                    .querySelectorAll('.menu-btn')
+                    .forEach(btn => {
+
+                        btn.classList.toggle(
+                            'active',
+                            parseInt(
+                                btn.dataset.index
+                            ) === index
+                        );
+
+                    });
+
+
+                updateNavButtons();
+
+            }
+
+
+            /* ==========================================
+               NAVIGATION BUTTONS
+            ========================================== */
+
+            function updateNavButtons() {
+
+                backBtn.disabled =
+                    currentIndex <= 0;
+
+                nextBtn.disabled =
+                    currentIndex >=
+                    flatList.length - 1;
+
+            }
+
+
+            backBtn.addEventListener(
+                'click',
+                () => {
+
+                    if (currentIndex > 0) {
+
+                        selectFeature(
+                            currentIndex - 1
+                        );
+
+                    }
+
+                }
+            );
+
+
+            nextBtn.addEventListener(
+                'click',
+                () => {
+
+                    if (
+                        currentIndex <
+                        flatList.length - 1
+                    ) {
+
+                        selectFeature(
+                            currentIndex + 1
+                        );
+
+                    }
+
+                }
+            );
+
+
+            /* ==========================================
+               MOBILE MENU
+            ========================================== */
+
+            menuBtn.addEventListener(
+                'click',
+                () => {
+
+                    sidebar.classList.toggle(
+                        'active-mobile'
+                    );
+
+                }
+            );
+
+
+            /* ==========================================
+               INITIALIZE
+            ========================================== */
+
+            buildFlatList();
+
+            renderMenu();
+
+            updatePageText();
+
+            updateNavButtons();
+
+        });
+
+    </script>
+
+</body>
+</html>
