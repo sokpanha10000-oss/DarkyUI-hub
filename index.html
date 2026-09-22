@@ -125,12 +125,12 @@ pre{padding:17px 18px;overflow:auto;color:#e9eaed;font-family:'SFMono-Regular',C
 <aside id="sidebar" class="sidebar"><div id="menu-content"></div></aside>
 <main class="main-content">
 <div id="landing-view" class="content-frame">
-<div class="page-header"><h2 class="main-page-title" id="intro-title">About Wand UI</h2><p class="main-page-subtitle">Documentation Hub · DarkyUI-Gen-2 v1.9.5</p></div>
-<div class="image-showcase"><img src="wandui_preview.png" alt="UI Preview" class="preview-img" id="thumbnail-image" onerror="this.style.display='none'"></div><div class="body-text" style="margin-top:-18px;font-size:12px;color:#777c84">DarkyUI-Gen-2 visual design reference. The reference image is included beside this HTML file.</div>
+<div class="page-header"><h2 class="main-page-title" id="intro-title">About Wand UI</h2><p class="main-page-subtitle">Documentation Hub · DarkyUI-Rebooted V1.0.1</p></div>
+<div class="image-showcase"><img src="wandui_preview.png" alt="UI Preview" class="preview-img" id="thumbnail-image" onerror="this.style.display='none'"></div><div class="body-text" style="margin-top:-18px;font-size:12px;color:#777c84">DarkyUI-Rebooted visual design reference. The reference image is included beside this HTML file.</div>
 <h3 class="body-section-title" id="desc-title">Wand UI Framework</h3><p class="body-text" id="desc-text-1"><strong>Wand UI</strong> is a Redz Library V5 remake, modified and expanded by <strong>Pirath_4 &amp; STEVEKHMER</strong>.</p>
 <div class="info-grid" id="info-grid-container"></div>
 <div class="action-cards">
-<div class="navigation-card toggle-card"><div><div class="card-action-text" style="color:var(--accent)">Select Framework</div><div class="custom-select-wrapper" id="custom-select-wrapper"><div class="custom-select" id="custom-select-trigger"><span id="custom-select-text">Wand UI</span><svg class="custom-select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="custom-options"><div class="custom-option selected" data-value="WandUI">Wand UI</div><div class="custom-option" data-value="BTUI">BTUIlib:modified 1.0</div><div class="custom-option" data-value="DarkyGen2">DarkyUI-Gen-2 v1.9.5</div><div class="custom-option" data-value="DarkyUI">DarkyUI v1.3.99</div></div></div></div></div>
+<div class="navigation-card toggle-card"><div><div class="card-action-text" style="color:var(--accent)">Select Framework</div><div class="custom-select-wrapper" id="custom-select-wrapper"><div class="custom-select" id="custom-select-trigger"><span id="custom-select-text">Wand UI</span><svg class="custom-select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="custom-options"><div class="custom-option selected" data-value="WandUI">Wand UI</div><div class="custom-option" data-value="BTUI">BTUIlib:modified 1.0</div><div class="custom-option" data-value="DarkyGen2">DarkyUI-Rebooted V1.0.1</div><div class="custom-option" data-value="DarkyUI">DarkyUI v1.3.99</div></div></div></div></div>
 <div id="continue-card-btn" class="navigation-card clickable-card"><div><span class="card-action-text">Explore Elements →</span><br><span class="card-desc-text">View code snippets and loadstrings</span></div></div>
 </div></div>
 <div id="content-container" class="content-frame hidden"><h2 id="current-feature-title" class="feature-main-title"></h2><div id="snippets-container"></div></div>
@@ -151,7 +151,7 @@ const btuiFeatures=[
 const darkyGen2Features=[
 {section:'Getting Started',items:[
 {name:'Loadstring',snippets:[
-{subtitle:'Load DarkyUI-Gen-2 v1.9.5',desc:'Loads the current DarkyUI-Gen-2 v1.9.5 release path. Keep the same release structure as your published GitHub build.',code:`local DarkyUI = loadstring(game:HttpGet("https://github.com/sokpanha10000-oss/DarkyUI/releases/download/1.9.5/DarkyUI-Gen-2.lua"))()`},
+{subtitle:'Load DarkyUI-Rebooted V1.0.1',desc:'Loads the current DarkyUI-Rebooted V1.0.1 build.',code:`local DarkyUI = loadstring(game:HttpGet("https://github.com/sokpanha10000-oss/DarkyUI/releases/download/Rebooted/DarkyUI-Rebooted.lua"))()`},
 {subtitle:'Load DarkyUI v1.3.99',desc:'Loads the normal DarkyUI v1.3.99 build.',code:`local DarkyUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/sokpanha10000-oss/DarkyUI/refs/heads/main/main.lua"))()`}
 ]},
 {name:'Managers',snippets:[{subtitle:'Library Managers',desc:'Access built-in managers.',code:`local SaveManager = DarkyUI.SaveManager
@@ -190,12 +190,11 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
         Default = 0,
     },
 })`}]},
-{name:'Window',snippets:[{subtitle:'v1.9.5 Rework Window',desc:'The classic fixed Window Header is restored while the old TopBar navigation surface remains removed. Sidebar and content begin below the Header. UIscale accepts numeric values such as 0.7.',code:`local Window = DarkyUI:CreateWindow({
+{name:'Window',snippets:[{subtitle:'Rework Window',desc:'Creates the main DarkyUI v1.6 interface.',code:`local Window = DarkyUI:CreateWindow({
     Title = "My Super Hub",
     Image = "rbxassetid://1234567890",
     Subtitle = "by .ftgs",
-    Size = UDim2.fromOffset(560, 360),
-    UIscale = 0.7,
+    Size = UDim2.fromOffset(580, 460),
     Theme = "BlueSky",
     Border = false,
     Blur = false,
@@ -217,10 +216,7 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
         Image = "rbxassetid://12345678",
     },
 })`}]},
-{name:'Sidebar Layout',snippets:[{subtitle:'v1.9.5 Sidebar',desc:'The old TopBar surface is gone. The sidebar stays organized as SearchBar at the top, a scrollable TabArea in the middle, and UserProfile underneath. The tab-area and profile boxes remain removed.',code:`-- Fixed Window Header
--- SearchBar
--- TabArea (scrolls up/down)
--- UserProfile (fixed underneath)`}]},{name:'Tab',snippets:[{subtitle:'v1.9.5 Glass Tab',desc:'Tabs use the Gen-2 glass selection style. The icon and icon box are always visible, selected tabs reveal the frosted surface and a fixed White border, and Tab styling is isolated from Colorpicker recoloring.',code:`local Tab = Window:CreateTab({
+{name:'Tab',snippets:[{subtitle:'Rework Tab',desc:'Creates a navigation tab with the new icon controls.',code:`local Tab = Window:CreateTab({
     Title = "Main",
     Desc = "Main tab",
     Icon = "house",
@@ -252,43 +248,34 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
     Title = "Featured",
     Icon = "star",
     Color = Color3.fromRGB(255, 200, 0),
-})`}]},{name:'FPS Monitor',snippets:[{subtitle:'v1.9.5 FPS / GPU / Ping Monitor',desc:'Creates a compact performance monitor. Each metric can be enabled or disabled independently. Set Draggable = true to move the monitor.',code:`Window:CreateFPS({
+})`}]},{name:'FPS Monitor',snippets:[{subtitle:'v1.6.8 FPS / GPU / Ping Monitor',desc:'Creates a compact performance monitor. Each metric can be enabled or disabled independently. Set Draggable = true to move the monitor.',code:`Window:CreateFPS({
     Title = "FPS UI",
     ShowFPS = true,
     ShowGPU = true,
     ShowPings = true,
     Draggable = true,
 })`}]} ,
-{name:'Page',snippets:[{subtitle:'Rework Page',desc:'Creates a dedicated right-side page inside the tab.',code:`local Page = Tab:CreatePage({
+{name:'Page',snippets:[{subtitle:'Rework Page / PageTab Row',desc:'Creates a PageTab in the horizontal Row menu. PageTabs work like normal tabs, while the normal Tab menu remains a vertical Column.',code:`local Page = Tab:CreatePage({
     Title = "Main",
     Icon = "house",
+    IconColor = "Red",
 })`}]},
-{name:'Section',snippets:[{subtitle:'v1.9.5 Section',desc:'Creates a section directly in the tab or page. Direction controls placement. Column stacks vertically; Row allows compatible sections to share one horizontal line. The section/element outer border is a fixed darker neutral and does not follow Colorpicker.',code:`local Section1 = Tab:CreateSection({
+{name:'Section',snippets:[{subtitle:'Rework Section',desc:'Creates a section directly in the tab or page.',code:`local Section1 = Tab:CreateSection({
     Title = "General Settings",
     Desc = "Main settings and controls",
     Icon = "settings",
-    Direction = "Column",
     Box = true,
     BoxBorder = true,
     Opened = true,
     TextTransparency = 0.05,
     DescTextTransparency = 0.4,
 })`}]},
-{name:'Direction',snippets:[{subtitle:'Section Direction Controller',desc:'Use Direction = "Row" when you want two sections to share horizontal space. Use Direction = "Column" when the section should use the full content width. Row and Column can be mixed on the same page.',code:`Tab:CreateSection({
-    Title = "Row Section",
-    Direction = "Row",
-})
-
-Tab:CreateSection({
-    Title = "Full Width Section",
-    Direction = "Column",
-})`}]},
 {name:'Notification',snippets:[{subtitle:'Rework Notification',desc:'Displays a temporary notification.',code:`DarkyUI:Notify({
     Title = "Success",
     Content = "Operation completed successfully",
     Duration = 3,
 })`}]},
-{name:'Key System',snippets:[{subtitle:'v1.9.5 Key System',desc:'Thumbnail-free centered key system. Draggable can be enabled, and Multi mode adds a URL chooser under Get Key. Selecting a URL copies it immediately.',code:`local KeySystem = DarkyUI:CreateKeySystem({
+{name:'Key System',snippets:[{subtitle:'V1.0.1 Key System',desc:'Centered key system with the title and note centered on the panel. Draggable can be enabled, and Multi mode adds a URL chooser under Get Key. Selecting a URL copies it immediately.',code:`local KeySystem = DarkyUI:CreateKeySystem({
     Title = "Access Required",
     Note = "Get your key at discord.gg/example",
     KeyValidator = function(key)
@@ -327,7 +314,7 @@ Tab:CreateSection({
 })`}]},
 ]},
 {section:'Interactive Elements',items:[
-{name:'Button',snippets:[{subtitle:'Rework Button',desc:'Button background can follow the selected theme/accent style. The separate outer element border remains dark and is never recolored by Colorpicker.',code:`Section1:CreateButton({
+{name:'Button',snippets:[{subtitle:'Rework Button',code:`Section1:CreateButton({
     Title = "Click Me",
     Desc = "Button description",
     Icon = "mouse-pointer-click",
@@ -340,7 +327,7 @@ Tab:CreateSection({
         print("Clicked!")
     end,
 })`}]},
-{name:'Dropdown',snippets:[{subtitle:'Rework Dropdown',desc:'Searchable dropdown with optional multi-selection. The popup keeps its selection state synchronized with the values currently in the dropdown.',code:`Section1:CreateDropdown({
+{name:'Dropdown',snippets:[{subtitle:'Rework Dropdown',desc:'Searchable dropdown with optional multi-selection.',code:`Section1:CreateDropdown({
     Title = "Select Option",
     Desc = "Choose an option",
     Values = {
@@ -355,8 +342,8 @@ Tab:CreateSection({
     Callback = function(selected)
         print("Selected:", selected)
     end,
-})`},{subtitle:'Refresh Dropdown Options',desc:'Updates the available values and immediately refreshes the open popup and current selection state.',code:`Dropdown:Refresh({ "Option5", "Option6", "Option7", })`},{subtitle:'Live Current Values Fix',desc:'v1.9.5 keeps newly refreshed values, the selected value, checkmarks, and popup scrolling synchronized so stale options do not remain visible.',code:`Dropdown:Refresh({ "Option5", "Option6", "Option7", "Option8", })`}]},
-{name:'Toggle',snippets:[{subtitle:'Rework Toggle',desc:'Toggle accent follows the active Theme and Colorpicker accent. Its outer border remains the fixed darker neutral element border.',code:`Section1:CreateToggle({
+})`},{subtitle:'Refresh Dropdown Options',desc:'Updates the available dropdown values after the dropdown has been created.',code:`Dropdown:Refresh({ "Option5", "Option6", "Option7", })`}]},
+{name:'Toggle',snippets:[{subtitle:'Rework Toggle',code:`Section1:CreateToggle({
     Title = "Enable Feature",
     Desc = "Toggle description",
     Icon = "power",
@@ -366,7 +353,7 @@ Tab:CreateSection({
     Callback = function(state)
         print("State:", state)
     end,
-})`},{subtitle:'Rework Checkbox',desc:'Checkbox uses the same accent scope as Toggle; its outer element border is never Colorpicker-controlled.',code:`Section1:CreateToggle({
+})`},{subtitle:'Rework Checkbox',code:`Section1:CreateToggle({
     Title = "Remember Setting",
     Desc = "Store this preference",
     Value = false,
@@ -376,7 +363,7 @@ Tab:CreateSection({
         print("Checked:", state)
     end,
 })`}]},
-{name:'Slider',snippets:[{subtitle:'Rework Slider',desc:'Slider accent follows the active Theme and Colorpicker accent while its outer border remains fixed darker neutral.',code:`Section1:CreateSlider({
+{name:'Slider',snippets:[{subtitle:'Rework Slider',code:`Section1:CreateSlider({
     Title = "Effect Strength",
     Desc = "Adjust the effect intensity",
     Value = {
@@ -390,7 +377,7 @@ Tab:CreateSection({
         print("Value:", value)
     end,
 })`}]},
-{name:'Input Box',snippets:[{subtitle:'Rework Input',desc:'Standard input field.',code:`Section1:CreateInput({
+{name:'Input Box',snippets:[{subtitle:'Rework Input',code:`Section1:CreateInput({
     Title = "Username",
     Desc = "Enter your username",
     Icon = "user",
@@ -400,7 +387,7 @@ Tab:CreateSection({
     Callback = function(text)
         print("Text:", text)
     end,
-})`},{subtitle:'Rework Textarea',desc:'Multi-line text input.',code:`Section1:CreateInput({
+})`},{subtitle:'Rework Textarea',code:`Section1:CreateInput({
     Title = "Description",
     Desc = "Enter multiple lines",
     Type = "Textarea",
@@ -410,7 +397,7 @@ Tab:CreateSection({
         print("Description:", text)
     end,
 })`}]},
-{name:'Colorpicker',snippets:[{subtitle:'v1.9.5 HSV Color Picker',desc:'Opens a draggable saturation/value picker plus a full-spectrum rainbow hue slider. The Colorpicker accent scope changes the Window local Blur aura, Toggle and Slider accents, and Button background where that element is accent-driven. It does not recolor Tab styling, the Tab icon box, or the fixed darker Element/Section outer borders.',image:'DarkyUI-ColorPicker-Reference.jpg',imageAlt:'DarkyUI ColorPicker reference',code:`Section1:CreateColorpicker({
+{name:'Colorpicker',snippets:[{subtitle:'v1.6.8 HSV Color Picker',desc:'Opens a draggable saturation/value picker plus a full-spectrum rainbow hue slider. The popup stays open while choosing colors and closes only from its X button. Dragging the picker no longer drags the main DarkyUI window.',image:'DarkyUI-ColorPicker-Reference.jpg',imageAlt:'DarkyUI ColorPicker reference',code:`Section1:CreateColorpicker({
     Title = "Select Color",
     Desc = "Choose any color",
     Locked = false,
@@ -423,7 +410,6 @@ print(ColorPicker:GetValue())
 print(ColorPicker:GetName())`}]}
 ]}
 ];
-
 const darkyUIFeatures=[
 {section:'Getting Started',items:[{name:'Loadstring',snippets:[{subtitle:'Load DarkyUI v1.3.99',desc:'Loads the normal DarkyUI v1.3.99 build.',code:`local DarkyUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/sokpanha10000-oss/DarkyUI/refs/heads/main/main.lua"))()`}]}]},
 {section:'Legacy Interface',items:[{name:'Window',snippets:[{subtitle:'Legacy Window',code:`local Window = DarkyUI:CreateWindow({
@@ -441,14 +427,14 @@ const darkyUIFeatures=[
     Duration = 3,
 })`}] }]}
 ];
-const libraryInfoData={WandUI:`<div class="info-card"><h4>⚡ Ideal Use Case</h4><p>Lightweight and responsive for straightforward utility hubs.</p></div><div class="info-card"><h4>✓ Key Features</h4><ul><li>Compact design</li><li>Built-in minimizer</li><li>User profile support</li></ul></div>`,BTUI:`<div class="info-card"><h4>🛡 Ideal Use Case</h4><p>Robust containers and elements for complex configurations.</p></div><div class="info-card"><h4>⚙ Key Features</h4><ul><li>Native key system</li><li>GroupBox organization</li><li>Custom themes and full-screen support</li></ul></div>`,DarkyGen2:`<div class="info-card"><h4>◈ Current Build</h4><p>DarkyUI-Gen-2 v1.9.5 is the current Gen-2 line with the fixed Window Header, removed old TopBar surface, Row/Column layouts, glass selected tabs, persistent FloatingButton, UIscale, Grey theme, local window aura, and current interactive elements.</p></div><div class="info-card"><h4>★ Key Features</h4><ul><li>v1.9.5 Rework Mode API</li><li>Fixed Window Header; old TopBar surface removed</li><li>Section Direction: Row / Column</li><li>Selected Tab glass surface with fixed White border</li><li>Tab icon and icon box remain visible</li><li>Persistent draggable FloatingButton</li><li>UIscale and Grey theme support</li><li>Small local Window Blur aura</li><li>Colorpicker scope is isolated from Tab styling and outer Element/Section borders</li></ul></div>`,DarkyUI:`<div class="info-card"><h4>Legacy Build</h4><p>DarkyUI v1.3.99 is the normal DarkyUI release kept alongside the Gen-2 line.</p></div><div class="info-card"><h4>Legacy</h4><ul><li>Kept for reference</li><li>Normal DarkyUI API</li><li>DarkyUI-Gen-2 is also available above</li></ul></div>`};
+const libraryInfoData={WandUI:`<div class="info-card"><h4>⚡ Ideal Use Case</h4><p>Lightweight and responsive for straightforward utility hubs.</p></div><div class="info-card"><h4>✓ Key Features</h4><ul><li>Compact design</li><li>Built-in minimizer</li><li>User profile support</li></ul></div>`,BTUI:`<div class="info-card"><h4>🛡 Ideal Use Case</h4><p>Robust containers and elements for complex configurations.</p></div><div class="info-card"><h4>⚙ Key Features</h4><ul><li>Native key system</li><li>GroupBox organization</li><li>Custom themes and full-screen support</li></ul></div>`,DarkyGen2:`<div class="info-card"><h4>◈ Ideal Use Case</h4><p>DarkyUI-Gen-2 v1.6.8 is the active DarkyUI-Gen-2 line with the reworked Tags, KeySystem, HSV ColorPicker, and modern elements.</p></div><div class="info-card"><h4>★ Key Features</h4><ul><li>v1.6.8 Rework Mode API</li><li>Two-box square Tags</li><li>Centered draggable KeySystem with Multi URL chooser</li><li>Tab, Tab Section, Page and Section system</li><li>Modern interactive elements</li></ul></div>`,DarkyUI:`<div class="info-card"><h4>Legacy Build</h4><p>DarkyUI v1.3.99 is the normal DarkyUI release kept alongside the Gen-2 line.</p></div><div class="info-card"><h4>Legacy</h4><ul><li>Kept for reference</li><li>Normal DarkyUI API</li><li>DarkyUI-Gen-2 is also available above</li></ul></div>`};
 let activeLibrary='WandUI',currentFeatures=wandUIFeatures,flatList=[],currentIndex=-1;
 const $=id=>document.getElementById(id);const sidebar=$('sidebar'),menuContent=$('menu-content'),landing=$('landing-view'),content=$('content-container'),featureTitle=$('current-feature-title'),snippets=$('snippets-container'),pagination=$('nav-pagination'),back=$('back-btn'),next=$('next-btn'),main=$('main-nav-title'),intro=$('intro-title'),descTitle=$('desc-title'),descText=$('desc-text-1'),thumb=$('thumbnail-image'),info=$('info-grid-container'),selectWrap=$('custom-select-wrapper'),selectTrigger=$('custom-select-trigger'),selectText=$('custom-select-text'),continueBtn=$('continue-card-btn');
 function save(){try{localStorage.setItem('docs_ui_state',JSON.stringify({lib:activeLibrary,idx:currentIndex}))}catch(e){}}
 function setData(lib){currentFeatures=lib==='WandUI'?wandUIFeatures:lib==='BTUI'?btuiFeatures:lib==='DarkyGen2'?darkyGen2Features:darkyUIFeatures}
 function flat(){flatList=[];currentFeatures.forEach(s=>s.items.forEach(i=>flatList.push({sectionName:s.section,...i})))}
-function updatePage(){info.innerHTML=libraryInfoData[activeLibrary]||'';if(activeLibrary==='WandUI'){main.textContent='Wand UI Docs';intro.textContent='About Wand UI';descTitle.textContent='Wand UI Framework';descText.innerHTML='<strong>Wand UI</strong> is a Redz Library V5 remake, modified and expanded by <strong>Pirath_4 & STEVEKHMER</strong>.';thumb.src='wandui_preview.png'}else if(activeLibrary==='BTUI'){main.textContent='BTUIlib:modified Docs';intro.textContent='About BTUIlib:mod 1.0';descTitle.textContent='BTUIlib Framework';descText.innerHTML='<strong>BTUIlib:modified 1.0</strong> is a modernized UI framework developed by <strong>Kaijakuhachimaru</strong> and <strong>baconT</strong>, with support from <strong>Pirath_4</strong>.';thumb.src='btui_preview.png'}else if(activeLibrary==='DarkyGen2'){main.textContent='DarkyUI-Gen-2 v1.9.5 Docs';intro.textContent='About DarkyUI-Gen-2 v1.9.5';descTitle.textContent='DarkyUI-Gen-2 Rework Mode';descText.innerHTML='<strong>DarkyUI-Gen-2 v1.9.5</strong> is the current Gen-2 build with the fixed Window Header and removed old TopBar surface, Row/Column sections, glass selected tabs, persistent FloatingButton, UIscale, Grey theme, local Window Blur aura, and separated Colorpicker styling rules.';thumb.src='DarkyUI-Gen-2-Design-Reference.png'}else{main.textContent='DarkyUI v1.3.99 Docs';intro.textContent='About DarkyUI v1.3.99';descTitle.textContent='DarkyUI v1.3.99';descText.innerHTML='<strong>DarkyUI v1.3.99</strong> is the archived normal DarkyUI release kept for reference.';thumb.src='DarkyUI-Gen-2-Design-Reference.png'}}
-function renderMenu(){menuContent.innerHTML='';let home=document.createElement('button');home.className='menu-btn active';home.textContent='About '+(activeLibrary==='WandUI'?'Wand UI':activeLibrary==='BTUI'?'BTUIlib:mod':activeLibrary==='DarkyGen2'?'DarkyUI-Gen-2 v1.9.5':'DarkyUI v1.3.99');let base=document.createElement('div');base.className='menu-section';base.innerHTML='<h3>Introducing</h3>';base.appendChild(home);menuContent.appendChild(base);home.onclick=showLanding;currentFeatures.forEach((sec,si)=>{let div=document.createElement('div');div.className='menu-section';div.innerHTML='<h3>'+sec.section+'</h3>';sec.items.forEach((item,ii)=>{let b=document.createElement('button');b.className='menu-btn';b.textContent=item.name;let idx=0;for(let i=0;i<si;i++)idx+=currentFeatures[i].items.length;idx+=ii;b.dataset.index=idx;b.onclick=()=>{selectFeature(idx);sidebar.classList.remove('active-mobile')};div.appendChild(b)});menuContent.appendChild(div)})}
+function updatePage(){info.innerHTML=libraryInfoData[activeLibrary]||'';if(activeLibrary==='WandUI'){main.textContent='Wand UI Docs';intro.textContent='About Wand UI';descTitle.textContent='Wand UI Framework';descText.innerHTML='<strong>Wand UI</strong> is a Redz Library V5 remake, modified and expanded by <strong>Pirath_4 & STEVEKHMER</strong>.';thumb.src='wandui_preview.png'}else if(activeLibrary==='BTUI'){main.textContent='BTUIlib:modified Docs';intro.textContent='About BTUIlib:mod 1.0';descTitle.textContent='BTUIlib Framework';descText.innerHTML='<strong>BTUIlib:modified 1.0</strong> is a modernized UI framework developed by <strong>Kaijakuhachimaru</strong> and <strong>baconT</strong>, with support from <strong>Pirath_4</strong>.';thumb.src='btui_preview.png'}else if(activeLibrary==='DarkyGen2'){main.textContent='DarkyUI-Rebooted V1.0.1 Docs';intro.textContent='About DarkyUI-Rebooted V1.0.1';descTitle.textContent='DarkyUI-Rebooted Rework Mode';descText.innerHTML='<strong>DarkyUI-Rebooted V1.0.1</strong> is the current DarkyUI release with the reworked PageTab Row, KeySystem, and existing interactive elements.';thumb.src='DarkyUI-Gen-2-Design-Reference.png'}else{main.textContent='DarkyUI v1.3.99 Docs';intro.textContent='About DarkyUI v1.3.99';descTitle.textContent='DarkyUI v1.3.99';descText.innerHTML='<strong>DarkyUI v1.3.99</strong> is the archived normal DarkyUI release kept for reference.';thumb.src='DarkyUI-Gen-2-Design-Reference.png'}}
+function renderMenu(){menuContent.innerHTML='';let home=document.createElement('button');home.className='menu-btn active';home.textContent='About '+(activeLibrary==='WandUI'?'Wand UI':activeLibrary==='BTUI'?'BTUIlib:mod':activeLibrary==='DarkyGen2'?'DarkyUI-Rebooted V1.0.1':'DarkyUI v1.3.99');let base=document.createElement('div');base.className='menu-section';base.innerHTML='<h3>Introducing</h3>';base.appendChild(home);menuContent.appendChild(base);home.onclick=showLanding;currentFeatures.forEach((sec,si)=>{let div=document.createElement('div');div.className='menu-section';div.innerHTML='<h3>'+sec.section+'</h3>';sec.items.forEach((item,ii)=>{let b=document.createElement('button');b.className='menu-btn';b.textContent=item.name;let idx=0;for(let i=0;i<si;i++)idx+=currentFeatures[i].items.length;idx+=ii;b.dataset.index=idx;b.onclick=()=>{selectFeature(idx);sidebar.classList.remove('active-mobile')};div.appendChild(b)});menuContent.appendChild(div)})}
 function showLanding(){currentIndex=-1;save();content.classList.add('hidden');pagination.classList.add('hiden-element');landing.classList.remove('hidden');menuContent.querySelectorAll('.menu-btn').forEach((b,i)=>b.classList.toggle('active',i===0));mainContent.scrollTo({top:0,behavior:'smooth'})}
 function selectFeature(index){const data=flatList[index];if(!data)return;currentIndex=index;save();landing.classList.add('hidden');content.classList.remove('hidden');pagination.classList.remove('hiden-element');featureTitle.textContent=data.name;snippets.innerHTML='';data.snippets.forEach((s,i)=>{let box=document.createElement('div');box.className='snippet-box';if(i===0)box.classList.add('open');let head=document.createElement('div');head.className='snippet-header';head.innerHTML='<div class="arrow-icon-wrapper"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><span class="snippet-subtitle"></span>';head.querySelector('.snippet-subtitle').textContent=s.subtitle;let bw=document.createElement('div');bw.className='snippet-body-wrapper';let body=document.createElement('div');body.className='snippet-body';if(s.desc){let d=document.createElement('div');d.className='snippet-desc';d.textContent=s.desc;body.appendChild(d)}if(s.image){let img=document.createElement('img');img.className='reference-image'+(s.image==='DarkyUI-ColorPicker-Reference.jpg'?' colorpicker-reference':'');img.src=s.image;img.alt=s.imageAlt||'Reference image';img.onerror=()=>img.remove();let cap=document.createElement('div');cap.className='reference-caption';cap.textContent='Visual reference';body.appendChild(img);body.appendChild(cap)}let toolbar=document.createElement('div');toolbar.className='code-toolbar';let copy=document.createElement('button');copy.className='copy-btn';copy.innerHTML='<svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';copy.onclick=async e=>{e.stopPropagation();let ok=false;try{await navigator.clipboard.writeText(s.code);ok=true}catch(err){try{let t=document.createElement('textarea');t.value=s.code;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();ok=document.execCommand('copy');t.remove()}catch(err2){}}if(ok){copy.classList.add('is-copied');setTimeout(()=>copy.classList.remove('is-copied'),1800)}};toolbar.appendChild(copy);let pre=document.createElement('pre'),code=document.createElement('code');code.textContent=s.code;pre.appendChild(code);body.append(toolbar,pre);bw.appendChild(body);box.append(head,bw);head.onclick=()=>box.classList.toggle('open');snippets.appendChild(box)});menuContent.querySelectorAll('.menu-btn').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.index)===index));updateNav();mainContent.scrollTo({top:0,behavior:'smooth'})}
 function updateNav(){back.disabled=currentIndex<=0;next.disabled=currentIndex>=flatList.length-1}
