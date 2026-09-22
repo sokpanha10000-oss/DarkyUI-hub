@@ -294,23 +294,17 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
     },
 })`},{subtitle:'Multi URL Key System',desc:'Set Multi = true and provide URL, URL2, URL3, and more. Clicking Get Key opens a selector; choosing a URL copies it immediately.',code:`local KeySystem = DarkyUI:CreateKeySystem({
     Title = "Access Required",
-    Note = "Get your key at discord.gg/example",
-    KeyValidator = function(key)
-        local validKeys = {
-            "key1",
-            "key2",
-            "key3",
-        }
-        return table.find(validKeys, key) ~= nil
-    end,
-    Draggable = true,
-    SaveKey = true,
-    Multi = true,
-    URL = {
-        URL = "https://discord.gg/example",
-        URL2 = "https://discord.gg/example",
-        URL3 = "https://discord.gg/example",
+    Note = "Enter your key to continue.",
+
+    PlatoboostAPI = {
+        {
+            Type = "platoboost",
+            ServiceId = your service ID,
+            Secret = "Platoboost Sercet",
+        },
     },
+
+    SaveKey = true,
 })`}]},
 ]},
 {section:'Interactive Elements',items:[
