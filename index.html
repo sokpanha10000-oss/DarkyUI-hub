@@ -331,7 +331,7 @@ const darkyGen2Features=[
 
 ]},
 {section:'Interactive Elements',items:[
-{name:'Button',snippets:[{subtitle:'Rework Button',code:`Section1:CreateButton({
+{name:'Button',snippets:[{subtitle:'Rework Button',code:`Tab:CreateButton({
     Title = "Click Me",
     Desc = "Button description",
     Icon = "mouse-pointer-click",
@@ -344,7 +344,7 @@ const darkyGen2Features=[
         print("Clicked!")
     end,
 })`}]},
-{name:'Dropdown',snippets:[{subtitle:'Rework Dropdown',desc:'SearchBar is always visible whenever the dropdown is opened, even when the Values list is empty. It remains available for small and large lists, and Multi-selection is supported.',code:`Section1:CreateDropdown({
+{name:'Dropdown',snippets:[{subtitle:'Rework Dropdown',desc:'SearchBar is always visible whenever the dropdown is opened, even when the Values list is empty. It remains available for small and large lists, and Multi-selection is supported.',code:`Tab:CreateDropdown({
     Title = "Select Option",
     Desc = "Choose an option",
     Values = {
@@ -360,7 +360,7 @@ const darkyGen2Features=[
         print("Selected:", selected)
     end,
 })`},{subtitle:'Refresh Dropdown Options',desc:'Updates the available dropdown values after the dropdown has been created.',code:`Dropdown:Refresh({ "Option5", "Option6", "Option7", })`}]},
-{name:'Toggle',snippets:[{subtitle:'Rework Toggle',desc:'Value = false starts the toggle OFF; Value = true starts it ON. The initial callback runs immediately with that state, so no manual click is required.',code:`Section1:CreateToggle({
+{name:'Toggle',snippets:[{subtitle:'Rework Toggle',desc:'Value = false starts the toggle OFF; Value = true starts it ON. The initial callback runs immediately with that state, so no manual click is required.',code:`Tab:CreateToggle({
     Title = "Enable Feature",
     Desc = "Toggle description",
     Icon = "power",
@@ -370,7 +370,7 @@ const darkyGen2Features=[
     Callback = function(state)
         print("State:", state)
     end,
-})`},{subtitle:'Rework Checkbox',code:`Section1:CreateToggle({
+})`},{subtitle:'Rework Checkbox',code:`Tab:CreateToggle({
     Title = "Remember Setting",
     Desc = "Store this preference",
     Value = false,
@@ -380,7 +380,7 @@ const darkyGen2Features=[
         print("Checked:", state)
     end,
 })`}]},
-{name:'Slider',snippets:[{subtitle:'Rework Slider',code:`Section1:CreateSlider({
+{name:'Slider',snippets:[{subtitle:'Rework Slider',code:`Tab:CreateSlider({
     Title = "Effect Strength",
     Desc = "Adjust the effect intensity",
     Value = {
@@ -394,7 +394,7 @@ const darkyGen2Features=[
         print("Value:", value)
     end,
 })`}]},
-{name:'Input Box',snippets:[{subtitle:'Rework Input',code:`Section1:CreateInput({
+{name:'Input Box',snippets:[{subtitle:'Rework Input',code:`Tab:CreateInput({
     Title = "Username",
     Desc = "Enter your username",
     Icon = "user",
@@ -404,7 +404,7 @@ const darkyGen2Features=[
     Callback = function(text)
         print("Text:", text)
     end,
-})`},{subtitle:'Rework Textarea',code:`Section1:CreateInput({
+})`},{subtitle:'Rework Textarea',code:`Tab:CreateInput({
     Title = "Description",
     Desc = "Enter multiple lines",
     Type = "Textarea",
