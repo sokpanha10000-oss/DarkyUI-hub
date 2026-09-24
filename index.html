@@ -88,13 +88,14 @@ button{font:inherit}
 #content-container:before{content:'Documentation';display:block;color:#767a81;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:650;margin-bottom:12px}
 .feature-main-title{border:0;padding:0;margin:0 0 24px}
 .snippet-box{background:#111315;border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:none}
-.snippet-header{display:flex;align-items:center;min-height:50px;padding:0 15px;background:#111315;cursor:pointer;user-select:none;transition:.18s}
-.snippet-header:hover{background:#17191b}
+.usage-tabs{display:flex;gap:7px;overflow-x:auto;padding:8px 8px 7px;background:#0f1112;border-bottom:1px solid var(--border);scrollbar-width:thin}
+.usage-tab{flex:0 0 auto;border:1px solid #2a2c30;background:#151719;color:#999da4;border-radius:8px;padding:8px 11px;font-size:12px;cursor:pointer;white-space:nowrap;transition:.18s}
+.usage-tab:hover{background:#1a1c1f;color:#eef0f2}
+.usage-tab.active{background:#1a1c1f;border-color:#3a3d42;color:#f2f3f5;font-weight:600}
+.usage-panel{display:block}
+
+.snippet-header{display:flex;align-items:center;min-height:50px;padding:0 15px;background:#111315;user-select:none}
 .snippet-subtitle{font-weight:600;font-size:13px;color:#eef0f2;margin-left:9px}
-.arrow-icon-wrapper{display:flex;align-items:center;justify-content:center;color:#73777f;transition:.25s}
-.snippet-box.open .arrow-icon-wrapper{transform:rotate(180deg);color:#c0c4ca}
-.snippet-body-wrapper{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
-.snippet-box.open .snippet-body-wrapper{grid-template-rows:1fr}
 .snippet-body{overflow:hidden;background:var(--code);border-top:1px solid var(--border)}
 .snippet-desc{padding:13px 15px;color:#969aa1;font-size:12px;line-height:1.7;border-bottom:1px solid var(--border);background:#111315}
 .code-toolbar{display:flex;justify-content:flex-end;padding:8px 10px;background:#0f1112;border-bottom:1px solid var(--border)}
@@ -125,12 +126,12 @@ pre{padding:17px 18px;overflow:auto;color:#e9eaed;font-family:'SFMono-Regular',C
 <aside id="sidebar" class="sidebar"><div id="menu-content"></div></aside>
 <main class="main-content">
 <div id="landing-view" class="content-frame">
-<div class="page-header"><h2 class="main-page-title" id="intro-title">About Wand UI</h2><p class="main-page-subtitle">Documentation Hub · DarkyUI-Rebooted V1.0.1</p></div>
+<div class="page-header"><h2 class="main-page-title" id="intro-title">About Wand UI</h2><p class="main-page-subtitle">Documentation Hub · DarkyUI-Rebooted V1.0.9</p></div>
 <div class="image-showcase"><img src="wandui_preview.png" alt="UI Preview" class="preview-img" id="thumbnail-image" onerror="this.style.display='none'"></div><div class="body-text" style="margin-top:-18px;font-size:12px;color:#777c84">DarkyUI-Rebooted visual design reference. The reference image is included beside this HTML file.</div>
 <h3 class="body-section-title" id="desc-title">Wand UI Framework</h3><p class="body-text" id="desc-text-1"><strong>Wand UI</strong> is a Redz Library V5 remake, modified and expanded by <strong>Pirath_4 &amp; STEVEKHMER</strong>.</p>
 <div class="info-grid" id="info-grid-container"></div>
 <div class="action-cards">
-<div class="navigation-card toggle-card"><div><div class="card-action-text" style="color:var(--accent)">Select Framework</div><div class="custom-select-wrapper" id="custom-select-wrapper"><div class="custom-select" id="custom-select-trigger"><span id="custom-select-text">Wand UI</span><svg class="custom-select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="custom-options"><div class="custom-option selected" data-value="WandUI">Wand UI</div><div class="custom-option" data-value="BTUI">BTUIlib:modified 1.0</div><div class="custom-option" data-value="DarkyGen2">DarkyUI-Rebooted V1.0.1</div><div class="custom-option" data-value="DarkyUI">DarkyUI v1.3.99</div></div></div></div></div>
+<div class="navigation-card toggle-card"><div><div class="card-action-text" style="color:var(--accent)">Select Framework</div><div class="custom-select-wrapper" id="custom-select-wrapper"><div class="custom-select" id="custom-select-trigger"><span id="custom-select-text">Wand UI</span><svg class="custom-select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="custom-options"><div class="custom-option selected" data-value="WandUI">Wand UI</div><div class="custom-option" data-value="BTUI">BTUIlib:modified 1.0</div><div class="custom-option" data-value="DarkyGen2">DarkyUI-Rebooted V1.0.9</div><div class="custom-option" data-value="DarkyUI">DarkyUI v1.3.99</div></div></div></div></div>
 <div id="continue-card-btn" class="navigation-card clickable-card"><div><span class="card-action-text">Explore Elements →</span><br><span class="card-desc-text">View code snippets and loadstrings</span></div></div>
 </div></div>
 <div id="content-container" class="content-frame hidden"><h2 id="current-feature-title" class="feature-main-title"></h2><div id="snippets-container"></div></div>
@@ -151,12 +152,9 @@ const btuiFeatures=[
 const darkyGen2Features=[
 {section:'Getting Started',items:[
 {name:'Loadstring',snippets:[
-{subtitle:'Load DarkyUI-Rebooted V1.0.1',desc:'Loads the current DarkyUI-Rebooted V1.0.1 build.',code:`local DarkyUI = loadstring(game:HttpGet("https://github.com/sokpanha10000-oss/DarkyUI/releases/download/Rebooted/DarkyUI-Rebooted.lua"))()`},
+{subtitle:'Load DarkyUI-Rebooted V1.0.9',desc:'Loads the current DarkyUI-Rebooted V1.0.9 build.',code:`local DarkyUI = loadstring(game:HttpGet("https://github.com/sokpanha10000-oss/DarkyUI/releases/download/Rebooted/DarkyUI-Rebooted.lua"))()`},
 {subtitle:'Load DarkyUI v1.3.99',desc:'Loads the normal DarkyUI v1.3.99 build.',code:`local DarkyUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/sokpanha10000-oss/DarkyUI/refs/heads/main/main.lua"))()`}
 ]},
-{name:'Managers',snippets:[{subtitle:'Library Managers',desc:'Access built-in managers.',code:`local SaveManager = DarkyUI.SaveManager
-local InterfaceManager = DarkyUI.InterfaceManager
-local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
 ]},
 {section:'Rework Usage',items:[
 {name:'Progress Bar',snippets:[{subtitle:'Rework Startup Progress Bar',desc:'Shows the startup screen first, animates the loading bar, rotates below the bar, then shows a checkmark. Optional UserList verification can kick users who are not allowed.',code:`local Progress = DarkyUI:CreateProgressBar({
@@ -190,7 +188,7 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
         Default = 0,
     },
 })`}]},
-{name:'Window',snippets:[{subtitle:'Rework Window',desc:'Creates the main DarkyUI v1.6 interface.',code:`local Window = DarkyUI:CreateWindow({
+{name:'Window',snippets:[{subtitle:'Rework Window',desc:'Creates the main DarkyUI-Rebooted V1.0.9 window with the fixed Header and current Window options. Auto shutdown is built into the Window lifecycle; no AutoShutdown setting is required.',code:`local Window = DarkyUI:CreateWindow({
     Title = "My Super Hub",
     Image = "rbxassetid://1234567890",
     Subtitle = "by .ftgs",
@@ -248,7 +246,7 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
     Title = "Featured",
     Icon = "star",
     Color = Color3.fromRGB(255, 200, 0),
-})`}]},{name:'FPS Monitor',snippets:[{subtitle:'v1.6.8 FPS / GPU / Ping Monitor',desc:'Creates a compact performance monitor. Each metric can be enabled or disabled independently. Set Draggable = true to move the monitor.',code:`Window:CreateFPS({
+})`}]},{name:'FPS Monitor',snippets:[{subtitle:'V1.0.9 FPS / GPU / Ping Monitor',desc:'Creates a compact performance monitor. Each metric can be enabled or disabled independently. Set Draggable = true to move the monitor.',code:`Window:CreateFPS({
     Title = "FPS UI",
     ShowFPS = true,
     ShowGPU = true,
@@ -260,10 +258,11 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
     Icon = "house",
     IconColor = "Red",
 })`}]},
-{name:'Section',snippets:[{subtitle:'Rework Section',desc:'Creates a section directly in the tab or page.',code:`local Section1 = Tab:CreateSection({
+{name:'Section',snippets:[{subtitle:'Rework Section',desc:'Creates an element Section directly in the tab or page. IconColor controls the Section icon color.',code:`local Section1 = Tab:CreateSection({
     Title = "General Settings",
     Desc = "Main settings and controls",
     Icon = "settings",
+    IconColor = "Red",
     Box = true,
     BoxBorder = true,
     Opened = true,
@@ -275,7 +274,8 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
     Content = "Operation completed successfully",
     Duration = 3,
 })`}]},
-{name:'Key System',snippets:[{subtitle:'V1.0.1 Key System',desc:'Centered key system with the title and note centered on the panel. Draggable can be enabled, and Multi mode adds a URL chooser under Get Key. Selecting a URL copies it immediately.',code:`local KeySystem = DarkyUI:CreateKeySystem({
+{name:'Key System',usageTabs:[
+{title:'KeySystem',subtitle:'V1.0.9 KeySystem',desc:'Centered key system with the title and note centered on the panel. Multi mode remains disabled in this usage.',code:`local KeySystem = DarkyUI:CreateKeySystem({
     Title = "Access Required",
     Note = "Get your key at discord.gg/example",
     KeyValidator = function(key)
@@ -292,20 +292,43 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
     URL = {
         URL = "https://discord.gg/example",
     },
-})`},{subtitle:'Key System + Platoboost',desc:'Setup everything yourself',code:`local KeySystem = DarkyUI:CreateKeySystem({
+})`},
+{title:'Multi KeySystem',subtitle:'Multi KeySystem',desc:'Set Multi = true and provide URL, URL2, URL3, and more. The Get Key flow can switch between multiple key URLs.',code:`local KeySystem = DarkyUI:CreateKeySystem({
+    Title = "Access Required",
+    Note = "Get your key at discord.gg/example",
+    KeyValidator = function(key)
+        local validKeys = {
+            "key1",
+            "key2",
+            "key3",
+        }
+        return table.find(validKeys, key) ~= nil
+    end,
+    Draggable = true,
+    SaveKey = true,
+    Multi = true,
+    URL = {
+        URL = "https://discord.gg/example",
+        URL2 = "https://discord.gg/example",
+        URL3 = "https://discord.gg/example",
+    },
+})`},
+{title:'KeySystem + Platoboost',subtitle:'KeySystem + Platoboost',desc:'Uses Platoboost for key verification and key-link generation. Platoboost handles the key expiration/limit configuration; DarkyUI does not add a separate Limit timer here.',code:`local KeySystem = DarkyUI:CreateKeySystem({
     Title = "Access Required",
     Note = "Enter your key to continue.",
 
     PlatoboostAPI = {
         {
             Type = "platoboost",
-            ServiceId = your service ID,
-            Secret = "Platoboost Sercet",
+            ServiceId = 1234,
+            Secret = "platoboost-secret",
         },
     },
 
     SaveKey = true,
-})`}]},
+})`}
+]},
+
 ]},
 {section:'Interactive Elements',items:[
 {name:'Button',snippets:[{subtitle:'Rework Button',code:`Section1:CreateButton({
@@ -321,7 +344,7 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
         print("Clicked!")
     end,
 })`}]},
-{name:'Dropdown',snippets:[{subtitle:'Rework Dropdown',desc:'Searchable dropdown with optional multi-selection.',code:`Section1:CreateDropdown({
+{name:'Dropdown',snippets:[{subtitle:'Rework Dropdown',desc:'SearchBar is always visible whenever the dropdown is opened, even when the Values list is empty. It remains available for small and large lists, and Multi-selection is supported.',code:`Section1:CreateDropdown({
     Title = "Select Option",
     Desc = "Choose an option",
     Values = {
@@ -337,7 +360,7 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
         print("Selected:", selected)
     end,
 })`},{subtitle:'Refresh Dropdown Options',desc:'Updates the available dropdown values after the dropdown has been created.',code:`Dropdown:Refresh({ "Option5", "Option6", "Option7", })`}]},
-{name:'Toggle',snippets:[{subtitle:'Rework Toggle',code:`Section1:CreateToggle({
+{name:'Toggle',snippets:[{subtitle:'Rework Toggle',desc:'Value = false starts the toggle OFF; Value = true starts it ON. The initial callback runs immediately with that state, so no manual click is required.',code:`Section1:CreateToggle({
     Title = "Enable Feature",
     Desc = "Toggle description",
     Icon = "power",
@@ -390,18 +413,7 @@ local FloatingButtonManager = DarkyUI.FloatingButtonManager`}]}
     Callback = function(text)
         print("Description:", text)
     end,
-})`}]},
-{name:'Colorpicker',snippets:[{subtitle:'v1.6.8 HSV Color Picker',desc:'Opens a draggable saturation/value picker plus a full-spectrum rainbow hue slider. The popup stays open while choosing colors and closes only from its X button. Dragging the picker no longer drags the main DarkyUI window.',image:'DarkyUI-ColorPicker-Reference.jpg',imageAlt:'DarkyUI ColorPicker reference',code:`Section1:CreateColorpicker({
-    Title = "Select Color",
-    Desc = "Choose any color",
-    Locked = false,
-})`},{subtitle:'ColorPicker Controls',desc:'Drag inside the large color area to change saturation/value, then drag the rainbow hue bar to change hue. The live color preview and hex value update as you drag.',code:`local ColorPicker = Section1:CreateColorpicker({
-    Title = "Select Color",
-    Desc = "Pick your own accent",
-})
-
-print(ColorPicker:GetValue())
-print(ColorPicker:GetName())`}]}
+})`}]}
 ]}
 ];
 const darkyUIFeatures=[
@@ -421,16 +433,33 @@ const darkyUIFeatures=[
     Duration = 3,
 })`}] }]}
 ];
-const libraryInfoData={WandUI:`<div class="info-card"><h4>⚡ Ideal Use Case</h4><p>Lightweight and responsive for straightforward utility hubs.</p></div><div class="info-card"><h4>✓ Key Features</h4><ul><li>Compact design</li><li>Built-in minimizer</li><li>User profile support</li></ul></div>`,BTUI:`<div class="info-card"><h4>🛡 Ideal Use Case</h4><p>Robust containers and elements for complex configurations.</p></div><div class="info-card"><h4>⚙ Key Features</h4><ul><li>Native key system</li><li>GroupBox organization</li><li>Custom themes and full-screen support</li></ul></div>`,DarkyGen2:`<div class="info-card"><h4>◈ Ideal Use Case</h4><p>DarkyUI-Gen-2 v1.6.8 is the active DarkyUI-Gen-2 line with the reworked Tags, KeySystem, HSV ColorPicker, and modern elements.</p></div><div class="info-card"><h4>★ Key Features</h4><ul><li>v1.6.8 Rework Mode API</li><li>Two-box square Tags</li><li>Centered draggable KeySystem with Multi URL chooser</li><li>Tab, Tab Section, Page and Section system</li><li>Modern interactive elements</li></ul></div>`,DarkyUI:`<div class="info-card"><h4>Legacy Build</h4><p>DarkyUI v1.3.99 is the normal DarkyUI release kept alongside the Gen-2 line.</p></div><div class="info-card"><h4>Legacy</h4><ul><li>Kept for reference</li><li>Normal DarkyUI API</li><li>DarkyUI-Gen-2 is also available above</li></ul></div>`};
+const libraryInfoData={WandUI:`<div class="info-card"><h4>⚡ Ideal Use Case</h4><p>Lightweight and responsive for straightforward utility hubs.</p></div><div class="info-card"><h4>✓ Key Features</h4><ul><li>Compact design</li><li>Built-in minimizer</li><li>User profile support</li></ul></div>`,BTUI:`<div class="info-card"><h4>🛡 Ideal Use Case</h4><p>Robust containers and elements for complex configurations.</p></div><div class="info-card"><h4>⚙ Key Features</h4><ul><li>Native key system</li><li>GroupBox organization</li><li>Custom themes and full-screen support</li></ul></div>`,DarkyGen2:`<div class="info-card"><h4>◈ Ideal Use Case</h4><p>DarkyUI-Rebooted V1.0.9 is the current Rebooted line with the reworked Window, navigation, KeySystem, always-visible dropdown SearchBar, initial Toggle Value state, and modern elements.</p></div><div class="info-card"><h4>★ Key Features</h4><ul><li>V1.0.9 Rework Mode API</li><li>Two-box square Tags</li><li>Centered KeySystem with KeySystem / Multi KeySystem / Platoboost usage</li><li>Tab, Tab Section, PageTab Row and Section system</li><li>Modern interactive elements</li></ul></div>`,DarkyUI:`<div class="info-card"><h4>Legacy Build</h4><p>DarkyUI v1.3.99 is the normal DarkyUI release kept alongside the Gen-2 line.</p></div><div class="info-card"><h4>Legacy</h4><ul><li>Kept for reference</li><li>Normal DarkyUI API</li><li>DarkyUI-Gen-2 is also available above</li></ul></div>`};
 let activeLibrary='WandUI',currentFeatures=wandUIFeatures,flatList=[],currentIndex=-1;
 const $=id=>document.getElementById(id);const sidebar=$('sidebar'),menuContent=$('menu-content'),landing=$('landing-view'),content=$('content-container'),featureTitle=$('current-feature-title'),snippets=$('snippets-container'),pagination=$('nav-pagination'),back=$('back-btn'),next=$('next-btn'),main=$('main-nav-title'),intro=$('intro-title'),descTitle=$('desc-title'),descText=$('desc-text-1'),thumb=$('thumbnail-image'),info=$('info-grid-container'),selectWrap=$('custom-select-wrapper'),selectTrigger=$('custom-select-trigger'),selectText=$('custom-select-text'),continueBtn=$('continue-card-btn');
 function save(){try{localStorage.setItem('docs_ui_state',JSON.stringify({lib:activeLibrary,idx:currentIndex}))}catch(e){}}
 function setData(lib){currentFeatures=lib==='WandUI'?wandUIFeatures:lib==='BTUI'?btuiFeatures:lib==='DarkyGen2'?darkyGen2Features:darkyUIFeatures}
 function flat(){flatList=[];currentFeatures.forEach(s=>s.items.forEach(i=>flatList.push({sectionName:s.section,...i})))}
-function updatePage(){info.innerHTML=libraryInfoData[activeLibrary]||'';if(activeLibrary==='WandUI'){main.textContent='Wand UI Docs';intro.textContent='About Wand UI';descTitle.textContent='Wand UI Framework';descText.innerHTML='<strong>Wand UI</strong> is a Redz Library V5 remake, modified and expanded by <strong>Pirath_4 & STEVEKHMER</strong>.';thumb.src='wandui_preview.png'}else if(activeLibrary==='BTUI'){main.textContent='BTUIlib:modified Docs';intro.textContent='About BTUIlib:mod 1.0';descTitle.textContent='BTUIlib Framework';descText.innerHTML='<strong>BTUIlib:modified 1.0</strong> is a modernized UI framework developed by <strong>Kaijakuhachimaru</strong> and <strong>baconT</strong>, with support from <strong>Pirath_4</strong>.';thumb.src='btui_preview.png'}else if(activeLibrary==='DarkyGen2'){main.textContent='DarkyUI-Rebooted V1.0.1 Docs';intro.textContent='About DarkyUI-Rebooted V1.0.1';descTitle.textContent='DarkyUI-Rebooted Rework Mode';descText.innerHTML='<strong>DarkyUI-Rebooted V1.0.1</strong> is the current DarkyUI release with the reworked PageTab Row, KeySystem, and existing interactive elements.';thumb.src='DarkyUI-Gen-2-Design-Reference.png'}else{main.textContent='DarkyUI v1.3.99 Docs';intro.textContent='About DarkyUI v1.3.99';descTitle.textContent='DarkyUI v1.3.99';descText.innerHTML='<strong>DarkyUI v1.3.99</strong> is the archived normal DarkyUI release kept for reference.';thumb.src='DarkyUI-Gen-2-Design-Reference.png'}}
-function renderMenu(){menuContent.innerHTML='';let home=document.createElement('button');home.className='menu-btn active';home.textContent='About '+(activeLibrary==='WandUI'?'Wand UI':activeLibrary==='BTUI'?'BTUIlib:mod':activeLibrary==='DarkyGen2'?'DarkyUI-Rebooted V1.0.1':'DarkyUI v1.3.99');let base=document.createElement('div');base.className='menu-section';base.innerHTML='<h3>Introducing</h3>';base.appendChild(home);menuContent.appendChild(base);home.onclick=showLanding;currentFeatures.forEach((sec,si)=>{let div=document.createElement('div');div.className='menu-section';div.innerHTML='<h3>'+sec.section+'</h3>';sec.items.forEach((item,ii)=>{let b=document.createElement('button');b.className='menu-btn';b.textContent=item.name;let idx=0;for(let i=0;i<si;i++)idx+=currentFeatures[i].items.length;idx+=ii;b.dataset.index=idx;b.onclick=()=>{selectFeature(idx);sidebar.classList.remove('active-mobile')};div.appendChild(b)});menuContent.appendChild(div)})}
+function updatePage(){info.innerHTML=libraryInfoData[activeLibrary]||'';if(activeLibrary==='WandUI'){main.textContent='Wand UI Docs';intro.textContent='About Wand UI';descTitle.textContent='Wand UI Framework';descText.innerHTML='<strong>Wand UI</strong> is a Redz Library V5 remake, modified and expanded by <strong>Pirath_4 & STEVEKHMER</strong>.';thumb.src='wandui_preview.png'}else if(activeLibrary==='BTUI'){main.textContent='BTUIlib:modified Docs';intro.textContent='About BTUIlib:mod 1.0';descTitle.textContent='BTUIlib Framework';descText.innerHTML='<strong>BTUIlib:modified 1.0</strong> is a modernized UI framework developed by <strong>Kaijakuhachimaru</strong> and <strong>baconT</strong>, with support from <strong>Pirath_4</strong>.';thumb.src='btui_preview.png'}else if(activeLibrary==='DarkyGen2'){main.textContent='DarkyUI-Rebooted V1.0.9 Docs';intro.textContent='About DarkyUI-Rebooted V1.0.9';descTitle.textContent='DarkyUI-Rebooted Rework Mode';descText.innerHTML='<strong>DarkyUI-Rebooted V1.0.9</strong> is the current Rebooted build with the reworked API, Row/Column navigation, PageTab Row, KeySystem, automatic dropdown SearchBar, initial Toggle Value state, and built-in auto shutdown.';thumb.src='DarkyUI-Gen-2-Design-Reference.png'}else{main.textContent='DarkyUI v1.3.99 Docs';intro.textContent='About DarkyUI v1.3.99';descTitle.textContent='DarkyUI v1.3.99';descText.innerHTML='<strong>DarkyUI v1.3.99</strong> is the archived normal DarkyUI release kept for reference.';thumb.src='DarkyUI-Gen-2-Design-Reference.png'}}
+function renderMenu(){menuContent.innerHTML='';let home=document.createElement('button');home.className='menu-btn active';home.textContent='About '+(activeLibrary==='WandUI'?'Wand UI':activeLibrary==='BTUI'?'BTUIlib:mod':activeLibrary==='DarkyGen2'?'DarkyUI-Rebooted V1.0.9':'DarkyUI v1.3.99');let base=document.createElement('div');base.className='menu-section';base.innerHTML='<h3>Introducing</h3>';base.appendChild(home);menuContent.appendChild(base);home.onclick=showLanding;currentFeatures.forEach((sec,si)=>{let div=document.createElement('div');div.className='menu-section';div.innerHTML='<h3>'+sec.section+'</h3>';sec.items.forEach((item,ii)=>{let b=document.createElement('button');b.className='menu-btn';b.textContent=item.name;let idx=0;for(let i=0;i<si;i++)idx+=currentFeatures[i].items.length;idx+=ii;b.dataset.index=idx;b.onclick=()=>{selectFeature(idx);sidebar.classList.remove('active-mobile')};div.appendChild(b)});menuContent.appendChild(div)})}
 function showLanding(){currentIndex=-1;save();content.classList.add('hidden');pagination.classList.add('hiden-element');landing.classList.remove('hidden');menuContent.querySelectorAll('.menu-btn').forEach((b,i)=>b.classList.toggle('active',i===0));mainContent.scrollTo({top:0,behavior:'smooth'})}
-function selectFeature(index){const data=flatList[index];if(!data)return;currentIndex=index;save();landing.classList.add('hidden');content.classList.remove('hidden');pagination.classList.remove('hiden-element');featureTitle.textContent=data.name;snippets.innerHTML='';data.snippets.forEach((s,i)=>{let box=document.createElement('div');box.className='snippet-box';if(i===0)box.classList.add('open');let head=document.createElement('div');head.className='snippet-header';head.innerHTML='<div class="arrow-icon-wrapper"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><span class="snippet-subtitle"></span>';head.querySelector('.snippet-subtitle').textContent=s.subtitle;let bw=document.createElement('div');bw.className='snippet-body-wrapper';let body=document.createElement('div');body.className='snippet-body';if(s.desc){let d=document.createElement('div');d.className='snippet-desc';d.textContent=s.desc;body.appendChild(d)}if(s.image){let img=document.createElement('img');img.className='reference-image'+(s.image==='DarkyUI-ColorPicker-Reference.jpg'?' colorpicker-reference':'');img.src=s.image;img.alt=s.imageAlt||'Reference image';img.onerror=()=>img.remove();let cap=document.createElement('div');cap.className='reference-caption';cap.textContent='Visual reference';body.appendChild(img);body.appendChild(cap)}let toolbar=document.createElement('div');toolbar.className='code-toolbar';let copy=document.createElement('button');copy.className='copy-btn';copy.innerHTML='<svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';copy.onclick=async e=>{e.stopPropagation();let ok=false;try{await navigator.clipboard.writeText(s.code);ok=true}catch(err){try{let t=document.createElement('textarea');t.value=s.code;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();ok=document.execCommand('copy');t.remove()}catch(err2){}}if(ok){copy.classList.add('is-copied');setTimeout(()=>copy.classList.remove('is-copied'),1800)}};toolbar.appendChild(copy);let pre=document.createElement('pre'),code=document.createElement('code');code.textContent=s.code;pre.appendChild(code);body.append(toolbar,pre);bw.appendChild(body);box.append(head,bw);head.onclick=()=>box.classList.toggle('open');snippets.appendChild(box)});menuContent.querySelectorAll('.menu-btn').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.index)===index));updateNav();mainContent.scrollTo({top:0,behavior:'smooth'})}
+function renderSnippet(s,parent){
+let box=document.createElement('div');box.className='snippet-box';
+let head=document.createElement('div');head.className='snippet-header';
+let title=document.createElement('span');title.className='snippet-subtitle';title.textContent=s.subtitle||'';head.appendChild(title);
+let body=document.createElement('div');body.className='snippet-body';
+if(s.desc){let d=document.createElement('div');d.className='snippet-desc';d.textContent=s.desc;body.appendChild(d)}
+if(s.image){let img=document.createElement('img');img.className='reference-image'+(s.image==='DarkyUI-ColorPicker-Reference.jpg'?' colorpicker-reference':'');img.src=s.image;img.alt=s.imageAlt||'Reference image';img.onerror=()=>img.remove();let cap=document.createElement('div');cap.className='reference-caption';cap.textContent='Visual reference';body.appendChild(img);body.appendChild(cap)}
+let toolbar=document.createElement('div');toolbar.className='code-toolbar';let copy=document.createElement('button');copy.className='copy-btn';copy.innerHTML='<svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';copy.onclick=async e=>{e.stopPropagation();let ok=false;try{await navigator.clipboard.writeText(s.code);ok=true}catch(err){try{let t=document.createElement('textarea');t.value=s.code;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();ok=document.execCommand('copy');t.remove()}catch(err2){}}if(ok){copy.classList.add('is-copied');setTimeout(()=>copy.classList.remove('is-copied'),1800)}};toolbar.appendChild(copy);
+let pre=document.createElement('pre'),code=document.createElement('code');code.textContent=s.code;pre.appendChild(code);body.append(toolbar,pre);box.append(head,body);parent.appendChild(box)
+}
+function renderKeySystemUsage(data,parent){
+let tabs=document.createElement('div');tabs.className='usage-tabs';
+let panel=document.createElement('div');panel.className='usage-panel';
+function show(i){tabs.querySelectorAll('.usage-tab').forEach((b,n)=>b.classList.toggle('active',n===i));panel.innerHTML='';renderSnippet(data.usageTabs[i],panel)}
+data.usageTabs.forEach((u,i)=>{let b=document.createElement('button');b.type='button';b.className='usage-tab'+(i===0?' active':'');b.textContent=u.title;b.onclick=()=>show(i);tabs.appendChild(b)});
+parent.appendChild(tabs);parent.appendChild(panel);show(0)
+}
+function selectFeature(index){const data=flatList[index];if(!data)return;currentIndex=index;save();landing.classList.add('hidden');content.classList.remove('hidden');pagination.classList.remove('hiden-element');featureTitle.textContent=data.name;snippets.innerHTML='';if(data.usageTabs){renderKeySystemUsage(data,snippets)}else{data.snippets.forEach(s=>renderSnippet(s,snippets))}menuContent.querySelectorAll('.menu-btn').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.index)===index));updateNav();mainContent.scrollTo({top:0,behavior:'smooth'})}
 function updateNav(){back.disabled=currentIndex<=0;next.disabled=currentIndex>=flatList.length-1}
 const mainContent=document.querySelector('.main-content');$('menu-btn').onclick=()=>sidebar.classList.toggle('active-mobile');continueBtn.onclick=()=>flatList.length&&selectFeature(0);back.onclick=()=>currentIndex>0&&selectFeature(currentIndex-1);next.onclick=()=>currentIndex<flatList.length-1&&selectFeature(currentIndex+1);selectTrigger.onclick=e=>{e.stopPropagation();selectWrap.classList.toggle('open')};document.addEventListener('click',()=>selectWrap.classList.remove('open'));document.querySelectorAll('.custom-option').forEach(o=>o.onclick=e=>{e.stopPropagation();document.querySelectorAll('.custom-option').forEach(x=>x.classList.remove('selected'));o.classList.add('selected');selectText.textContent=o.textContent;activeLibrary=o.dataset.value;setData(activeLibrary);flat();renderMenu();updatePage();showLanding()});
 try{let s=JSON.parse(localStorage.getItem('docs_ui_state')||'null');if(s&&['WandUI','BTUI','DarkyGen2','DarkyUI'].includes(s.lib)){activeLibrary=s.lib;setData(activeLibrary);document.querySelectorAll('.custom-option').forEach(o=>{let hit=o.dataset.value===activeLibrary;o.classList.toggle('selected',hit);if(hit)selectText.textContent=o.textContent})}currentIndex=s&&typeof s.idx==='number'?s.idx:-1}catch(e){}setData(activeLibrary);flat();renderMenu();updatePage();updateNav();if(currentIndex>=0&&currentIndex<flatList.length)selectFeature(currentIndex);else showLanding();
